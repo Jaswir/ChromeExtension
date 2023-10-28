@@ -1,9 +1,3 @@
-
-// document.getElementById("colorPicker").addEventListener("input", event => {
-//   changeBackground(event.target.value)
-// })
-
-
 // Executes Specified Functions on active chrome tab
 function executeFunctionsOnChromeTab() {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -17,7 +11,13 @@ function executeFunctionsOnChromeTab() {
 executeFunctionsOnChromeTab()
 
 
-// FUNCTIONS // 
+// FUNCTIONS //
+
+//Kinda got stuck on this function , attempting to add a thumbs up reply 
+// for every new message added to the dom, would be really great if you got that working!
+// Make it so that every message has a like button, 
+// or atleast for testing purposes like the first 2 messages. 
+// 1 from person A, 1 from person B.
 function addMessageListener() {
 
     var messageContainer = document.querySelectorAll('[aria-live="polite"]')[0]
@@ -96,6 +96,7 @@ function addLikeButton() {
         var message = messageContainer.children[0]
         message.appendChild(likeButton);
   
+        //Add event listener for increase like counter
         var likeCount = 0
         var likeButton2 = document.getElementById("likeButton");
         var likeCounter = document.getElementById("likeCounter");
