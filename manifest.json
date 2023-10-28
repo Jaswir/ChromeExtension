@@ -1,11 +1,12 @@
 {
-    "name": "Jaswir's First Chrome Extension",
-    "version": "1.1",
-    "description": "My first Chrome Extension",
-    "manifest_version": 3,
-    "author": "Jaswir Raghoe",
-    "action": {
-        "default_title": "Jaswir's First Chrome Extension",
-        "default_popup": "index.html"
-    }
+  "name": "Like Button Chrome Extension",
+  "version": "1.1",
+  "description": "Like Button  Chrome Extension",
+  "manifest_version": 3,
+  "author": "Jaswir Raghoe, Sahil ???",
+  "permissions": ["scripting", "activeTab"],
+  "action": {
+    "default_title": "Like Button Chrome Extension",
+    "default_popup": "index.html"
+  }
 }
