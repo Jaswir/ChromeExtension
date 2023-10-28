@@ -5,34 +5,28 @@
 //   changeBackground(event.target.value)
 // })
 
-changeBackground("#fffaec")
 
-// Executes Specified Script on active chrome tab
-function changeBackground(color) {
+// Executes Specified Functions on active chrome tab
+function executeFunctionsOnChromeTab() {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
         chrome.scripting.executeScript({
             target: { tabId: tabs[0].id },
             function: changeText,
-            // args: [color],
         })
     })
 }
 
-function makeBlankPage() {
-    var body = document.body;
+executeFunctionsOnChromeTab()
 
-    // Remove all child nodes from the body
-    while (body.firstChild) {
-        body.removeChild(body.firstChild);
-    }
-}
+// function makeBlankPage() {
+//     var body = document.body;
 
-function changeBackgroundColor(color) {
-    document.body.style.backgroundColor = color
+//     // Remove all child nodes from the body
+//     while (body.firstChild) {
+//         body.removeChild(body.firstChild);
+//     }
+// }
 
-    console.log("Jaswir is the best")
-    console.log("Message Dom: ")
-}
 
 function changeText() {
 
@@ -47,7 +41,6 @@ function changeText() {
         var text0 = messageContainer.children[0].
             children[1].innerText = "thumbs up"
     }
-
-
-
 }
+
+
