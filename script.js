@@ -1,6 +1,4 @@
 
-// chrome.extension.getBackgroundPage().console.log('foo');
-
 // document.getElementById("colorPicker").addEventListener("input", event => {
 //   changeBackground(event.target.value)
 // })
@@ -18,32 +16,9 @@ function executeFunctionsOnChromeTab() {
 
 executeFunctionsOnChromeTab()
 
-// function makeBlankPage() {
-//     var body = document.body;
-
-//     // Remove all child nodes from the body
-//     while (body.firstChild) {
-//         body.removeChild(body.firstChild);
-//     }
-// }
 
 
-function changeText() {
-
-    // Element with this custom html property and value contains all messages
-    var messageContainer = document.querySelectorAll('[aria-live="polite"]')[0]
-
-    console.log("Message Container: ")
-    console.log(messageContainer)
-
-    //Change text of first message
-    if (messageContainer.children.length != 0) {
-        var text0 = messageContainer.children[0].
-            children[1].innerText = "thumbs up"
-    }
-}
-
-
+// FUNCTIONS // 
 function addLikeButton() {
     // Element with this custom html property and value contains all messages
     var messageContainer = document.querySelectorAll('[aria-live="polite"]')[0]
