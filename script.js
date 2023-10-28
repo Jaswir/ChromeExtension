@@ -17,9 +17,55 @@ function executeFunctionsOnChromeTab() {
 executeFunctionsOnChromeTab()
 
 
-
 // FUNCTIONS // 
+function addMessageListener() {
+
+    var messageContainer = document.querySelectorAll('[aria-live="polite"]')[0]
+
+    // Create a new Mutation Observer
+    const observer = new MutationObserver(function (mutationsList, observer) {
+        for (let mutation of mutationsList) {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+
+                // Checks if new messages were added
+                const newMessage = mutation.addedNodes[0]
+                console.log('New message added:', mutation.addedNodes[0]);
+
+
+                // Adds like button to new message
+                var likeButton = document.createElement("div");
+                likeButton.id = "likeButton";
+                likeButton.className = "like-button";
+
+                const myPolicy = trustedTypes.createPolicy('my-policy', {
+                    createHTML: (input) => {
+                        return input;
+                    }
+                });
+
+                const trustedHTML = myPolicy.createHTML(`
+                        <button class="like-icon">&#128077;</button>
+                        <span class="like-count">0</span>`
+                )
+                likeButton.innerHTML = trustedHTML
+                const clonedElement = likeButton.cloneNode(true);
+
+                //Add like button element to new message
+                newMessage.appendChild(clonedElement);
+            }
+        }
+    });
+
+    // Configure and start observing the target element
+    const config = { childList: true };
+    observer.observe(messageContainer, config);
+
+}
+
+
+
 function addLikeButton() {
+
     // Element with this custom html property and value contains all messages
     var messageContainer = document.querySelectorAll('[aria-live="polite"]')[0]
 
@@ -29,11 +75,9 @@ function addLikeButton() {
     //Add Like button to first message
     if (messageContainer.children.length != 0) {
 
-
-
         // Create the like button element
         var likeButton = document.createElement("div");
-        likeButton.id = "likeButton";
+        likeButton.id = "likeButtonContainer";
         likeButton.className = "like-button";
 
         const myPolicy = trustedTypes.createPolicy('my-policy', {
@@ -43,15 +87,23 @@ function addLikeButton() {
         });
 
         const trustedHTML = myPolicy.createHTML(`
-        <button class="like-icon">Like</button>
-        <span class="like-count">&#128077;</span>`
+        <button id="likeButton" class="like-icon">&#128077;</button>
+        <span id="likeCounter" class="like-count">0</span>`
         )
         likeButton.innerHTML = trustedHTML
 
         //Add like button element to message
         var message = messageContainer.children[0]
         message.appendChild(likeButton);
-
+  
+        var likeCount = 0
+        var likeButton2 = document.getElementById("likeButton");
+        var likeCounter = document.getElementById("likeCounter");
+      
+        likeButton2.addEventListener("click", function() {
+          likeCount = 1 - likeCount;
+          likeCounter.textContent = likeCount;  
+        });
     }
 }
 
