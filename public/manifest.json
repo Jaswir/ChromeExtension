@@ -1,0 +1,14 @@
+{
+    // Required
+    "manifest_version": 3,
+    "name": "React Chrome Extension Test",
+    "version": "1.0.0",
+
+    "action":{
+      "default_popup": "index.html"
+    },
+    "permissions": ["storage", "activeTab", "scripting"]
+    
+  
+  }
+  
